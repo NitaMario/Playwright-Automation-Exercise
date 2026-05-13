@@ -427,3 +427,11 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Playwright & Security
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.auth/
+.env
+*.env.local
