@@ -24,10 +24,4 @@
     <Using Include="System.Threading.Tasks" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Core\" />
-    <Folder Include="Tests\" />
-    <Folder Include="Pages\" />
-  </ItemGroup>
-
 </Project>
