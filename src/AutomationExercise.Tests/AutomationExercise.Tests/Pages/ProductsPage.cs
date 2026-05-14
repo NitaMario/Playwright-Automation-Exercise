@@ -8,6 +8,8 @@ class ProductsPage : BasePage
     private ILocator SearchButton => _page.Locator("#submit_search");
     private ILocator SearchedProductsHeader => _page.Locator("h2:has-text('Searched Products')");
     private ILocator ProductNames => _page.Locator(".productinfo p");
+    private ILocator GetAddToCartButton(int productId) => _page.Locator($"a[data-product-id='{productId}']").First;
+    private ILocator ContinueShoppingButton => _page.Locator("button:has-text('Continue Shopping')");
 
     public async Task GotoAsync()
     {
@@ -39,5 +41,12 @@ class ProductsPage : BasePage
     public async Task<IReadOnlyList<string>> GetVisibleProductNamesAsync()
     {
         return await ProductNames.AllTextContentsAsync();
+    }
+
+    public async Task AddProductToCartAsync(int productId)
+    {
+        await GetAddToCartButton(productId).ClickAsync();
+        await ContinueShoppingButton.WaitForAsync();
+        await ContinueShoppingButton.ClickAsync();
     }
 }
