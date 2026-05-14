@@ -6,6 +6,8 @@ class CartPage : BasePage
 
     // Locators
     private ILocator CartRows => _page.Locator("tbody tr");
+    private ILocator ProceedToCheckoutButton => _page.Locator("text=Proceed To Checkout");
+    private ILocator RegisterLoginModalLink => _page.Locator("u:has-text('Register / Login')");
 
     // Actions
     public async Task GotoAsync()
@@ -43,5 +45,16 @@ class CartPage : BasePage
 
         string cleanTotal = totalText.Replace("Rs. ", "").Trim();
         return int.Parse(cleanTotal);
+    }
+
+    public async Task ClickProceedToCheckoutAsync()
+    {
+        await ProceedToCheckoutButton.ClickAsync();
+    }
+
+    public async Task ClickRegisterOnCheckoutModalAsync()
+    {
+        await RegisterLoginModalLink.WaitForAsync();
+        await RegisterLoginModalLink.ClickAsync();
     }
 }
